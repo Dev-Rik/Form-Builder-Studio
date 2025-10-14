@@ -1,1 +1,112 @@
-<p>builder-canvas works!</p>
+<div class="canvas-container">
+  <div class="canvas-content">
+    <div class="form-card">
+      <input
+        type="text"
+        class="form-title"
+        [value]="formTitle()"
+        (input)="updateTitle($event)"
+        placeholder="Form Title"
+      />
+
+      <div
+        cdkDropList
+        [cdkDropListData]="fields()"
+        (cdkDropListDropped)="drop($event)"
+        class="fields-container"
+      >
+        @for (field of fields(); track field.id; let i = $index) {
+        <div
+          class="field-wrapper"
+          cdkDrag
+          [cdkDragData]="field"
+          [class.selected]="isSelected(field.id)"
+          (click)="selectField(field.id)"
+        >
+          <div class="field-header">
+            <div class="field-header-left">
+              <span class="drag-handle" cdkDragHandle>⋮⋮</span>
+              <label>
+                {{ field.label }}
+                @if (field.required) {
+                <span class="required">*</span>
+                }
+              </label>
+            </div>
+            <button
+              class="delete-btn"
+              (click)="deleteField(field.id, $event)"
+            >
+              ×
+            </button>
+          </div>
+          <div class="field-control">
+            @switch (field.type) { @case ('text') {
+            <input
+              type="text"
+              [placeholder]="field.placeholder"
+              class="form-input"
+              disabled
+            />
+            } @case ('email') {
+            <input
+              type="email"
+              [placeholder]="field.placeholder"
+              class="form-input"
+              disabled
+            />
+            } @case ('number') {
+            <input
+              type="number"
+              [placeholder]="field.placeholder"
+              class="form-input"
+              disabled
+            />
+            } @case ('date') {
+            <input type="date" class="form-input" disabled />
+            } @case ('dropdown') {
+            <select class="form-input" disabled>
+              <option value="">
+                {{ field.placeholder || 'Select an option' }}
+              </option>
+              @for (opt of field.options; track opt) {
+              <option [value]="opt">{{ opt }}</option>
+              }
+            </select>
+            } @case ('checkbox') {
+            <div class="checkbox-field">
+              <input type="checkbox" disabled />
+              <span>{{ field.label }}</span>
+            </div>
+            } @case ('radio') {
+            <div class="radio-group">
+              @for (opt of field.options; track opt) {
+              <div class="radio-option">
+                <input type="radio" [name]="field.id" disabled />
+                <span>{{ opt }}</span>
+              </div>
+              }
+            </div>
+            } @case ('textarea') {
+            <textarea
+              [placeholder]="field.placeholder"
+              class="form-input"
+              rows="4"
+              disabled
+            ></textarea>
+            } @case ('file') {
+            <input type="file" class="form-input" disabled />
+            } }
+          </div>
+        </div>
+        } @empty {
+        <div class="empty-state">
+          <p>Drag and drop fields here to start building your form</p>
+        </div>
+        }
+      </div>
+
+      <button class="submit-btn">Submit</button>
+    </div>
+  </div>
+</div>
