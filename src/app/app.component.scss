@@ -1,5 +1,136 @@
-    mat-toolbar {
+.app-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #f5f5f5;
+    }
+
+    .app-header {
+      background: #1976d2;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    h1 {
       font-size: 24px;
       font-weight: 600;
       margin: 0;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .view-btn,
+    .action-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .view-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .view-btn.active {
+      background: #1565c0;
+    }
+
+    .action-btn {
+      color: white;
+    }
+
+    .export-btn {
+      background: #4caf50;
+    }
+
+    .export-btn:hover {
+      background: #45a049;
+    }
+
+    .import-btn {
+      background: #9c27b0;
+      cursor: pointer;
+    }
+
+    .import-btn:hover {
+      background: #7b1fa2;
+    }
+
+    .app-main {
+      flex: 1;
+    }
+
+    .builder-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr 340px;
+      height: 100%;
+    }
+
+    .json-viewer {
+      height: 100%;
+      overflow: auto;
+      padding: 32px;
+      background: #263238;
+    }
+
+    .json-viewer pre {
+      color: #4caf50;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .builder-layout {
+        grid-template-columns: 250px 1fr;
+        grid-template-rows: 1fr auto;
+      }
+
+      app-properties-panel {
+        grid-column: 1 / -1;
+        border-top: 2px solid #e0e0e0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .header-actions {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .view-btn,
+      .action-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      .builder-layout {
+        display: flex;
+        flex-direction: column;
+      }
     }

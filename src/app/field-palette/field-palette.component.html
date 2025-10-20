@@ -1,1 +1,15 @@
-<p>field-palette works!</p>
+<div class="field-palette">
+      <h2>Field Palette</h2>
+      <div class="palette-grid">
+        <div
+          *ngFor="let template of fieldTemplates"
+          class="field-item"
+          cdkDrag
+          [cdkDragData]="template"
+          (click)="addField(template.type)"
+        >
+          <div class="field-icon">{{ template.icon }}</div>
+          <div class="field-label">{{ template.label }}</div>
+        </div>
+      </div>
+    </div>

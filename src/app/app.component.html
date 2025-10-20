@@ -1,17 +1,59 @@
-<mat-toolbar color="primary">
-  <span>Form Builder Studio</span>
-</mat-toolbar>
+<div class="app-container">
+      <header class="app-header">
+        <h1>📄 Form Builder Studio</h1>
+        <div class="header-actions">
+          <button
+            [class.active]="currentView() === 'builder'"
+            (click)="setView('builder')"
+            class="view-btn"
+          >
+            ⚙️ Builder
+          </button>
+          <button
+            [class.active]="currentView() === 'preview'"
+            (click)="setView('preview')"
+            class="view-btn"
+          >
+            👁️ Preview
+          </button>
+          <button
+            [class.active]="currentView() === 'json'"
+            (click)="setView('json')"
+            class="view-btn"
+          >
+            {{ '{ }' }} JSON
+          </button>
+          <button (click)="exportSchema()" class="action-btn export-btn">
+            💾 Export
+          </button>
+          <label class="action-btn import-btn">
+            📤 Import
+            <input
+              type="file"
+              accept=".json"
+              (change)="importSchema($event)"
+              style="display: none;"
+            />
+          </label>
+        </div>
+      </header>
 
-<div class="app-shell">
-  <div class="left-col"> <!-- palette -->
-    <app-field-palette></app-field-palette>
-  </div>
-
-  <div class="center-col"> <!-- canvas -->
-    <app-builder-canvas></app-builder-canvas>
-  </div>
-
-  <div class="right-col"> <!-- properties / preview -->
-    <app-properties-panel></app-properties-panel>
-  </div>
-</div>
+      <main class="app-main">
+        @if (currentView() === 'builder') {
+        <!-- Builder View -->
+        <div class="builder-layout">
+          <app-field-palette></app-field-palette>
+          <app-builder-canvas></app-builder-canvas>
+          <app-properties-panel></app-properties-panel>
+        </div>
+        } @else if (currentView() === 'preview') {
+        <!-- Preview View -->
+        <app-form-renderer></app-form-renderer>
+        } @else if (currentView() === 'json') {
+        <!-- JSON View -->
+        <div class="json-viewer">
+          <pre>{{ schemaJson() }}</pre>
+        </div>
+        }
+      </main>
+    </div>
