@@ -2,10 +2,10 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SchemaService } from '../services/schema.service';
 import { FieldType, FieldTemplate } from '../model/form-schema';
-import { CdkDrag } from '@angular/cdk/drag-drop';
+
 @Component({
   selector: 'app-field-palette',
-  imports: [CommonModule, CdkDrag],
+  imports: [CommonModule],
   templateUrl: './field-palette.component.html',
   styleUrl: './field-palette.component.scss'
 })
