@@ -32,7 +32,7 @@ export class SchemaService {
         label: 'Country',
         placeholder: 'Select a country',
         required: false,
-        options: ['India', 'USA', 'UK', 'Canada'],
+        options: ['India', 'USA', 'UK', 'Canada, Australia, Germany,  France, Japan, China, Brazil, South Africa, New Zealand, Italy, Spain, Mexico, Russia, Netherlands, Sweden, Switzerland, Norway, Denmark, Finland, Belgium, Austria, Ireland,  Portugal, Greece, Turkey, Poland, Czech Republic'],
         validation: {},
         conditional: { show: false }
       },
@@ -53,34 +53,34 @@ export class SchemaService {
   readonly schema = this.formSchema.asReadonly();
   readonly selectedField = this.selectedFieldId.asReadonly();
 
-  // Get form title
+  // To get form title
   getTitle(): string {
     return this.formSchema().title;
   }
 
-  // Update form title
+  // To update form title
   updateTitle(title: string): void {
     this.formSchema.update(schema => ({ ...schema, title }));
   }
 
-  // Get all fields
+  // To get all fields
   getFields(): FormField[] {
     return this.formSchema().fields;
   }
 
-  // Get selected field
+  // To get selected field
   getSelectedField(): FormField | null {
     const fieldId = this.selectedFieldId();
     if (!fieldId) return null;
     return this.formSchema().fields.find(f => f.id === fieldId) || null;
   }
 
-  // Select a field
+  // To select a field
   selectField(fieldId: string | null): void {
     this.selectedFieldId.set(fieldId);
   }
 
-  // Add a new field
+  // To add a new field
   addField(type: FieldType, index?: number): void {
     const newField: FormField = {
       id: `field${Date.now()}`,
@@ -108,7 +108,7 @@ export class SchemaService {
     this.selectField(newField.id);
   }
 
-  // Update a field
+  // To update a field
   updateField(fieldId: string, updates: Partial<FormField>): void {
     this.formSchema.update(schema => ({
       ...schema,
@@ -118,7 +118,7 @@ export class SchemaService {
     }));
   }
 
-  // Delete a field
+  // To delete a field
   deleteField(fieldId: string): void {
     this.formSchema.update(schema => ({
       ...schema,
@@ -130,7 +130,7 @@ export class SchemaService {
     }
   }
 
-  // Move a field
+  // To move a field
   moveField(fromIndex: number, toIndex: number): void {
     this.formSchema.update(schema => {
       const fields = [...schema.fields];
@@ -140,12 +140,12 @@ export class SchemaService {
     });
   }
 
-  // Export schema
+  // To export schema
   exportSchema(): string {
     return JSON.stringify(this.formSchema(), null, 2);
   }
 
-  // Import schema
+  // To import schema
   importSchema(schemaJson: string): void {
     try {
       const schema = JSON.parse(schemaJson);

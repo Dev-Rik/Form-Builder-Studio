@@ -1,0 +1,127 @@
+.properties-panel {
+      background: #1976d2;
+      color: white;
+      padding: 24px;
+      height: 100%;
+      overflow-y: auto;
+    //   width: 350px
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .properties-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .property-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .property-group > label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .sub-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .property-input,
+    .remove-btn,
+    .add-option-btn {
+      width: 100%;
+      padding: 10px;
+      background: #1565c0;
+      border: 1px solid #1e88e5;
+      border-radius: 4px;
+      color: white;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .property-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .property-input:focus {
+      outline: none;
+      border-color: white;
+    }
+
+    .checkbox-group {
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .option-item {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .option-item .property-input {
+      flex: 1;
+    }
+
+    .remove-btn {
+      background: #f44336;
+      border: none;
+      color: white;
+      width: 32px;
+      height: 38px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .remove-btn:hover {
+      background: #d32f2f;
+    }
+
+    .add-option-btn {
+      width: 100%;
+      padding: 10px;
+      background: #1565c0;
+      border: 1px solid #1e88e5;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .add-option-btn:hover {
+      background: #0d47a1;
+    }
+
+    .validation-inputs,
+    .conditional-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .no-selection {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
