@@ -6,45 +6,8 @@ import { FormSchema, FormField, FieldType } from '../model/form-schema';
 })
 export class SchemaService {
   private formSchema = signal<FormSchema>({
-    title: 'User Registration',
-    fields: [
-      {
-        id: 'field1',
-        type: FieldType.TEXT,
-        label: 'Full Name',
-        placeholder: 'Enter your name',
-        required: true,
-        validation: {},
-        conditional: { show: false }
-      },
-      {
-        id: 'field2',
-        type: FieldType.EMAIL,
-        label: 'Email',
-        placeholder: '',
-        required: false,
-        validation: {},
-        conditional: { show: false }
-      },
-      {
-        id: 'field3',
-        type: FieldType.DROPDOWN,
-        label: 'Country',
-        placeholder: 'Select a country',
-        required: false,
-        options: ['India', 'USA', 'UK', 'Canada', 'Australia', 'Germany', 'France', 'Japan', 'China', 'Brazil', 'South Africa', 'New Zealand', 'Italy', 'Spain', 'Mexico', 'Russia', 'Netherlands', 'Sweden', 'Switzerland', 'Norway', 'Denmark', 'Finland', 'Belgium', 'Austria', 'Ireland', 'Portugal', 'Greece', 'Turkey', 'Poland', 'Czech Republic'],
-        validation: {},
-        conditional: { show: false }
-      },
-      {
-        id: 'field4',
-        type: FieldType.CHECKBOX,
-        label: 'I agree to the terms and conditions',
-        required: false,
-        validation: {},
-        conditional: { show: false }
-      }
-    ]
+    title: 'New Form',
+    fields: []
   });
 
   private selectedFieldId = signal<string | null>(null);
@@ -149,7 +112,7 @@ export class SchemaService {
   importSchema(jsonContent: string): void {
     try {
       const newSchema = JSON.parse(jsonContent) as FormSchema;
-      
+
       // Basic validation to ensure it's a valid schema object
       if (newSchema && newSchema.title && Array.isArray(newSchema.fields)) {
         this.formSchema.set(newSchema);
