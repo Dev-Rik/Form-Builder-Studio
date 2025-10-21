@@ -39,6 +39,13 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { label: input.value });
   }
 
+  updateCheckboxLabel(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.schemaService.updateField(this.selectedField()!.id, {
+      checkboxLabel: input.value,
+    });
+  }
+
   updatePlaceholder(event: Event): void {
     const field = this.selectedField();
     if (!field) return;

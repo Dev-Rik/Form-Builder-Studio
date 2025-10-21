@@ -30,6 +30,7 @@ export interface FormField {
   type: FieldType;
   label: string;
   placeholder?: string;
+  checkboxLabel?: string;
   required: boolean;
   options?: string[];
   validation?: ValidationRules;

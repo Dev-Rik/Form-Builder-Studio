@@ -13,6 +13,18 @@
       />
     </div>
 
+    @if (field.type === 'checkbox') {
+    <div class="property-group">
+      <label>Checkbox Text</label>
+      <input
+        type="text"
+        [value]="field.checkboxLabel || ''"
+        (input)="updateCheckboxLabel($event)"
+        class="property-input"
+      />
+    </div>
+    }
+
     <div class="property-group">
       <label>Placeholder</label>
       <input

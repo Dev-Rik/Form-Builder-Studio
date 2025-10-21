@@ -76,7 +76,7 @@
             } @case ('checkbox') {
             <div class="checkbox-field">
               <input type="checkbox" disabled />
-              <span>{{ field.label }}</span>
+              <span>{{ field.checkboxLabel || field.label }}</span>
             </div>
             } @case ('radio') {
             <div class="radio-group">
