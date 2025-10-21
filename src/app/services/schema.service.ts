@@ -146,14 +146,20 @@ export class SchemaService {
   }
 
   // To import schema
-  importSchema(schemaJson: string): void {
+  importSchema(jsonContent: string): void {
     try {
-      const schema = JSON.parse(schemaJson);
-      this.formSchema.set(schema);
-      this.selectField(null);
-    } catch (error) {
-      console.error('Invalid schema JSON', error);
-      throw new Error('Invalid schema JSON');
+      const newSchema = JSON.parse(jsonContent) as FormSchema;
+      
+      // Basic validation to ensure it's a valid schema object
+      if (newSchema && newSchema.title && Array.isArray(newSchema.fields)) {
+        this.formSchema.set(newSchema);
+        this.selectedFieldId.set(null);
+      } else {
+        throw new Error('Invalid schema format.');
+      }
+    } catch (e) {
+      console.error('Failed to parse or apply schema:', e);
+      throw new Error('Invalid JSON or schema format.');
     }
   }
 }
