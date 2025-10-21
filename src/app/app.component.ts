@@ -1,5 +1,4 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { FieldPaletteComponent } from './field-palette/field-palette.component';
 import { BuilderCanvasComponent } from './builder-canvas/builder-canvas.component';
 import { PropertiesPanelComponent } from './properties-panel/properties-panel.component';
@@ -11,7 +10,6 @@ type ViewMode = 'builder' | 'preview' | 'json';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     FieldPaletteComponent,
     BuilderCanvasComponent,
     PropertiesPanelComponent,
@@ -27,6 +25,15 @@ export class AppComponent {
   schemaJson = signal(
     JSON.stringify(this.schemaService.schema(), null, 2)
   );
+
+  copyButtonText = signal('📋 Copy');
+
+  copyJson(): void {
+    navigator.clipboard.writeText(this.schemaJson()).then(() => {
+      this.copyButtonText.set('✅ Copied!');
+      setTimeout(() => this.copyButtonText.set('📋 Copy'), 2000);
+    });
+  }
 
   setView(view: ViewMode): void {
     this.currentView.set(view);

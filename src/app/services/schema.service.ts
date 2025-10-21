@@ -32,7 +32,7 @@ export class SchemaService {
         label: 'Country',
         placeholder: 'Select a country',
         required: false,
-        options: ['India', 'USA', 'UK', 'Canada, Australia, Germany,  France, Japan, China, Brazil, South Africa, New Zealand, Italy, Spain, Mexico, Russia, Netherlands, Sweden, Switzerland, Norway, Denmark, Finland, Belgium, Austria, Ireland,  Portugal, Greece, Turkey, Poland, Czech Republic'],
+        options: ['India', 'USA', 'UK', 'Canada', 'Australia', 'Germany', 'France', 'Japan', 'China', 'Brazil', 'South Africa', 'New Zealand', 'Italy', 'Spain', 'Mexico', 'Russia', 'Netherlands', 'Sweden', 'Switzerland', 'Norway', 'Denmark', 'Finland', 'Belgium', 'Austria', 'Ireland', 'Portugal', 'Greece', 'Turkey', 'Poland', 'Czech Republic'],
         validation: {},
         conditional: { show: false }
       },

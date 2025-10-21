@@ -52,6 +52,7 @@
         } @else if (currentView() === 'json') {
         <!-- JSON View -->
         <div class="json-viewer">
+          <button class="copy-btn" (click)="copyJson()">{{ copyButtonText() }}</button>
           <pre>{{ schemaJson() }}</pre>
         </div>
         }
