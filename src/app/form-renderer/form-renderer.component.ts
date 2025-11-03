@@ -111,9 +111,13 @@ export class FormRendererComponent {
 
   onSubmit(): void {
     if (this.formGroup.valid) {
+      localStorage.setItem('formData', JSON.stringify(this.formGroup.value));
       console.log('Form submitted:', this.formGroup.value);
       alert('Form submitted successfully!\n\n' + JSON.stringify(this.formGroup.value, null, 2));
       this.formGroup.reset();
+      setTimeout(() => {
+        localStorage.removeItem('formData');
+      }, 30000);
     } else {
       Object.keys(this.formGroup.controls).forEach(key => {
         const control = this.formGroup.get(key);
