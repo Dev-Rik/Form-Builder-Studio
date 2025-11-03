@@ -25,6 +25,7 @@
     </div>
     }
 
+    @if (field.type !== 'checkbox') {
     <div class="property-group">
       <label>Placeholder</label>
       <input
@@ -34,6 +35,7 @@
         class="property-input"
       />
     </div>
+    }
 
     <div class="property-group checkbox-group">
       <input

@@ -1,1 +1,164 @@
-<p>form-renderer works!</p>
+<div class="renderer-container">
+    <div class="form-card">
+        <h2 class="form-title">{{ formTitle() }}</h2>
+
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            @for (field of visibleFields(); track field.id) {
+            <div class="form-field">
+                <ng-container [ngSwitch]="field.type">
+                    <!-- Text Input -->
+                    @if (field.type === 'text') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <input type="text" [formControlName]="field.id" [placeholder]="field.placeholder"
+                            class="form-control" />
+                    </div>
+                    }
+
+                    <!-- Email -->
+                    @if (field.type === 'email') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <input type="email" [formControlName]="field.id" [placeholder]="field.placeholder"
+                            class="form-control" />
+                    </div>
+                    }
+
+                    <!-- Number -->
+                    @if (field.type === 'number') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <input type="number" [formControlName]="field.id" [placeholder]="field.placeholder"
+                            class="form-control" />
+                    </div>
+                    }
+
+                    <!-- Date -->
+                    @if (field.type === 'date') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <input type="date" [formControlName]="field.id" class="form-control" />
+                    </div>
+                    }
+
+                    <!-- Dropdown -->
+                    @if (field.type === 'dropdown') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <select [formControlName]="field.id" class="form-control">
+                            <option value="">{{ field.placeholder || 'Select an option' }}</option>
+                            @for (opt of field.options; track opt) {
+                            <option [value]="opt">{{ opt }}</option>
+                            }
+                        </select>
+                    </div>
+                    }
+
+                    <!-- Checkbox -->
+                    @if (field.type === 'checkbox') {
+                    <div class="checkbox-field">
+                        <label class="checkbox-main-label">
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <div>
+                            <input type="checkbox" [formControlName]="field.id" [id]="field.id" />
+                            <label [for]="field.id">
+                                {{ field.checkboxLabel }}
+                            </label>
+                        </div>
+                    </div>
+                    }
+
+                    <!-- Radio -->
+                    @if (field.type === 'radio') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <div class="radio-group">
+                            @for (opt of field.options; track opt) {
+                            <div class="radio-option">
+                                <input type="radio" [formControlName]="field.id" [value]="opt"
+                                    [id]="field.id + '_' + opt" />
+                                <label [for]="field.id + '_' + opt">{{ opt }}</label>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    <!-- Textarea -->
+                    @if (field.type === 'textarea') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <textarea [formControlName]="field.id" [placeholder]="field.placeholder" class="form-control"
+                            rows="4"></textarea>
+                    </div>
+                    }
+
+                    <!-- File -->
+                    @if (field.type === 'file') {
+                    <div>
+                        <label>
+                            {{ field.label }}
+                            @if (field.required) {
+                            <span class="required">*</span>
+                            }
+                        </label>
+                        <input type="file" (change)="onFileChange($event, field.id)" class="form-control" />
+                    </div>
+                    }
+                </ng-container>
+
+                @if (field.type !== 'checkbox' && isInvalid(field.id)) {
+                <div class="error-message">
+                    This field is required
+                </div>
+                }
+                @if (field.type === 'checkbox' && isInvalid(field.id)) {
+                <div class="error-message">
+                    This checkbox must be checked
+                </div>
+                }
+            </div>
+            }
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</div>

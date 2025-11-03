@@ -45,8 +45,13 @@ export class SchemaService {
 
   // To add a new field
   addField(type: FieldType, index?: number): void {
+    const existingIds = this.formSchema().fields.map(f => f.id);
+      let newId = 1;
+      while (existingIds.includes(`field${newId}`)) {
+        newId++;
+      }
     const newField: FormField = {
-      id: `field${Date.now()}`,
+      id: `field${newId}`,
       type,
       label: `New ${type} Field`,
       placeholder: '',

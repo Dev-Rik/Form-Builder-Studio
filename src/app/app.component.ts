@@ -3,7 +3,8 @@ import { FieldPaletteComponent } from './field-palette/field-palette.component';
 import { BuilderCanvasComponent } from './builder-canvas/builder-canvas.component';
 import { PropertiesPanelComponent } from './properties-panel/properties-panel.component';
 import { SchemaService } from './services/schema.service';
-import { FormRendererComponent } from "./form-renderer/form-renderer.component";
+import { FormRendererComponent } from './form-renderer/form-renderer.component';
+import { FormSchema } from './model/form-schema';
 
 type ViewMode = 'builder' | 'preview' | 'json';
 
@@ -13,10 +14,10 @@ type ViewMode = 'builder' | 'preview' | 'json';
     FieldPaletteComponent,
     BuilderCanvasComponent,
     PropertiesPanelComponent,
-    FormRendererComponent
-],
+    FormRendererComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   private schemaService = inject(SchemaService);
