@@ -9,7 +9,7 @@ Built with **Angular 19**, **Material Design**, and **Reactive Forms** with **Si
 ---
 
 ## 🚀 Live Demo
-> 🔗 [Coming Soon]
+> 🔗 https://dev-rik.github.io/Form-Builder-Studio/
 
 ---
 
