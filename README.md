@@ -1,6 +1,6 @@
 # 🧩 Form Builder Studio
 
-### 🏗️ A No-Code Drag-and-Drop Form Builder built with Angular
+### 🏗️ A No-Code Form Builder built with Angular
 
 **Form Builder Studio** is a dynamic **no-code web application** that lets anyone create fully functional, validated forms by simply **clicking to add fields** — no coding required.
 
