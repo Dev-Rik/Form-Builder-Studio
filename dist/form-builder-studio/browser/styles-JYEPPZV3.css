@@ -1,0 +1,1 @@
+.app-shell{display:grid;grid-template-columns:280px 1fr 340px;gap:12px;padding:12px;height:calc(100vh - 64px)}html,body{height:100%}body{margin:0;font-family:Roboto,Helvetica Neue,Arial,sans-serif;overflow-x:hidden}
