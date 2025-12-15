@@ -3,17 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormField } from '../model/form-schema';
 import { FormsModule } from '@angular/forms';
 import { SchemaService } from '../services/schema.service';
-import { CdkDrag, CdkDropList, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-builder-canvas',
-  imports: [CommonModule, FormsModule, CdkDrag, CdkDropList],
+  imports: [CommonModule, FormsModule, DragDropModule],
   templateUrl: './builder-canvas.component.html',
   styleUrls: ['./builder-canvas.component.scss']
 })
 export class BuilderCanvasComponent {
   schemaService = inject(SchemaService); 
-
   formTitle = signal('');
   fields = signal<FormField[]>([]);
   selectedFieldId = this.schemaService.selectedField;

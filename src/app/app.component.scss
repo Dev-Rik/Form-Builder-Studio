@@ -118,6 +118,19 @@ h1 {
   word-wrap: break-word;
 }
 
+.app-footer {
+  background-color: #1976d2;
+  padding: 25px;
+  text-align: center;
+  margin-top: 0;
+  font-size: 14px;
+  color: #ffffff;
+
+  p {
+    margin: 0;
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 1200px) {
   .builder-layout {
