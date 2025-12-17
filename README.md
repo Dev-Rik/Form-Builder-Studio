@@ -14,9 +14,8 @@ Built with **Angular 19**, **Material Design**, and **Reactive Forms** with **Si
 ---
 
 ## 📸 Preview
-| Builder View | Live Preview |
-|:--------------:|:--------------:|
-| *(Click to add fields to build forms)* | *(See instant live preview)* |
+<img width="1470" height="801" alt="Screenshot 2025-12-17 at 9 23 07 PM" src="https://github.com/user-attachments/assets/f7f497de-d32d-47ee-8a30-9ac3f4c1488e" />
+
 
 ---
 
