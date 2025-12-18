@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class PropertiesPanelComponent {
   private schemaService = inject(SchemaService);
 
+  // Computed the currently selected field by filtering the schema fields
   selectedField = computed(() => {
     const schema = this.schemaService.schema();
     const selectedId = this.schemaService.selectedField();
@@ -20,6 +21,7 @@ export class PropertiesPanelComponent {
     return schema.fields.find((f) => f.id === selectedId);
   });
 
+  // Extracted all fields except the currently selected one to use in conditional field dropdowns (to avoid circular dependencies)
   otherFields = computed(() => {
     const allFields = this.schemaService.schema().fields;
     const selectedId = this.schemaService.selectedField();
@@ -27,11 +29,13 @@ export class PropertiesPanelComponent {
     return allFields.filter((f) => f.id !== selectedId);
   });
 
+  // Determined if the selected field supports options (dropdown/radio)
   hasOptions(): boolean {
     const field = this.selectedField();
     return field?.type === FieldType.DROPDOWN || field?.type === FieldType.RADIO;
   }
 
+  // To update field label
   updateLabel(event: Event): void {
     const field = this.selectedField();
     if (!field) return;
@@ -39,6 +43,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { label: input.value });
   }
 
+  // To update checkbox label
   updateCheckboxLabel(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.schemaService.updateField(this.selectedField()!.id, {
@@ -46,6 +51,7 @@ export class PropertiesPanelComponent {
     });
   }
 
+  // To update field placeholder
   updatePlaceholder(event: Event): void {
     const field = this.selectedField();
     if (!field) return;
@@ -53,6 +59,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { placeholder: input.value });
   }
 
+  // To update field required status
   updateRequired(event: Event): void {
     const field = this.selectedField();
     if (!field) return;
@@ -60,6 +67,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { required: checkbox.checked });
   }
 
+  // To update field options for dropdown/radio types
   updateOption(index: number, event: Event): void {
     const field = this.selectedField();
     if (!field || !field.options) return;
@@ -69,6 +77,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { options: newOptions });
   }
 
+  // To add a new option to dropdown/radio fields
   addOption(): void {
     const field = this.selectedField();
     if (!field || !field.options) return;
@@ -76,6 +85,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { options: newOptions });
   }
 
+  // To remove an option from dropdown/radio fields
   removeOption(index: number): void {
     const field = this.selectedField();
     if (!field || !field.options) return;
@@ -83,6 +93,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { options: newOptions });
   }
 
+  // To update field validation rules
   updateValidation(key: string, event: Event): void {
     const field = this.selectedField();
     if (!field) return;
@@ -91,6 +102,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { validation });
   }
 
+  // To update conditional field settings
   updateConditionalField(event: Event): void {
     const field = this.selectedField();
     if (!field) return;
@@ -103,6 +115,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { conditional });
   }
 
+  // To update conditional operator settings
   updateConditionalOperator(event: Event): void {
     const field = this.selectedField();
     if (!field) return;
@@ -115,6 +128,7 @@ export class PropertiesPanelComponent {
     this.schemaService.updateField(field.id, { conditional });
   }
 
+  // To update conditional value settings
   updateConditionalValue(event: Event): void {
     const field = this.selectedField();
     if (!field) return;

@@ -18,6 +18,7 @@ export class BuilderCanvasComponent {
   selectedFieldId = this.schemaService.selectedField;
 
   constructor() {
+    // Effect to automatically sync the form title and fields whenever the schema changes
     effect(() => {
       const schema = this.schemaService.schema();
       this.formTitle.set(schema.title);
@@ -25,24 +26,29 @@ export class BuilderCanvasComponent {
     });
   }
 
+  // To update form title
   updateTitle(event: Event): void {
     const input = event.target as HTMLInputElement;
     this.schemaService.updateTitle(input.value);
   }
 
+  // To select a field
   selectField(fieldId: string): void {
     this.schemaService.selectField(fieldId);
   }
 
+  // To delete a field
   deleteField(fieldId: string, event: Event): void {
     event.stopPropagation();
     this.schemaService.deleteField(fieldId);
   }
 
+  // To check if a field is selected
   isSelected(fieldId: string): boolean {
     return this.selectedFieldId() === fieldId;
   }
 
+  // To handle drag and drop of fields
   drop(event: CdkDragDrop<FormField[]>): void {
     if (event.previousContainer === event.container) {
       this.schemaService.moveField(event.previousIndex, event.currentIndex);

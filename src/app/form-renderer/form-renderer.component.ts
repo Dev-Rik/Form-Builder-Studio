@@ -26,13 +26,14 @@ export class FormRendererComponent {
   ) {
     this.formGroup = this.createFormGroup();
     
-    // Recreate form when schema signal changes using an Angular effect
+    // Recreated form when schema signal changes using an Angular effect
     effect(() => {
       this.schemaService.schema();
       this.formGroup = this.createFormGroup();
     });
   }
 
+  //Dynamically built a reactive form group with validators based on each field's configuration
   private createFormGroup(): FormGroup {
     const group: any = {};
 
@@ -77,6 +78,7 @@ export class FormRendererComponent {
     return this.fb.group(group);
   }
 
+  // Determined if a field should be shown based on its conditional logic
   private shouldShowField(field: FormField): boolean {
     if (!field.conditional?.show || !field.conditional.field) {
       return true;
@@ -97,11 +99,13 @@ export class FormRendererComponent {
     }
   }
 
+  // To check if a form control is invalid and touched/dirty
   isInvalid(fieldId: string): boolean {
     const control = this.formGroup.get(fieldId);
     return !!(control && control.invalid && (control.touched || control.dirty));
   }
 
+  // To handle file input changes
   onFileChange(event: Event, fieldId: string): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -109,6 +113,7 @@ export class FormRendererComponent {
     }
   }
 
+  // To handle form submission
   onSubmit(): void {
     if (this.formGroup.valid) {
       localStorage.setItem('formData', JSON.stringify(this.formGroup.value));
