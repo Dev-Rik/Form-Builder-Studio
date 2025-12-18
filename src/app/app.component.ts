@@ -23,12 +23,14 @@ export class AppComponent {
   private schemaService = inject(SchemaService);
   currentView = signal<ViewMode>('builder');
 
+  // Computed JSON representation of the current schema
   schemaJson = signal(
     JSON.stringify(this.schemaService.schema(), null, 2)
   );
 
   copyButtonText = signal('📋 Copy');
 
+  // To copy the schema JSON to clipboard
   copyJson(): void {
     navigator.clipboard.writeText(this.schemaJson()).then(() => {
       this.copyButtonText.set('✅ Copied!');
@@ -36,6 +38,7 @@ export class AppComponent {
     });
   }
 
+  // To switch between different views (builder, preview, json)
   setView(view: ViewMode): void {
     this.currentView.set(view);
     if (view === 'json') {
@@ -43,10 +46,12 @@ export class AppComponent {
     }
   }
 
+  // To update the schema JSON signal
   updateSchemaJson(): void {
     this.schemaJson.set(this.schemaService.exportSchema());
   }
 
+  // To export the current schema as a JSON file
   exportSchema(): void {
     const schema = this.schemaService.exportSchema();
     const blob = new Blob([schema], { type: 'application/json' });
@@ -58,6 +63,7 @@ export class AppComponent {
     URL.revokeObjectURL(url);
   }
 
+  // To import a schema from a JSON file
   importSchema(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
