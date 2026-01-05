@@ -104,6 +104,56 @@ export class FormRendererComponent {
     const control = this.formGroup.get(fieldId);
     return !!(control && control.invalid && (control.touched || control.dirty));
   }
+  // Created a method to get the specific error message for a field based on its validation error type
+  getErrorMessage(fieldId: string): string {
+    const control = this.formGroup.get(fieldId);
+    
+    if (!control || !control.errors) {
+      return '';
+    }
+
+    //Checked for required validation error first
+    if (control.hasError('required')) {
+      return 'This field is required';
+    }
+
+    // Checked for email validation error
+    if (control.hasError('email')) {
+      return 'Please enter a valid email address';
+    }
+
+    // Checked for minimum length validation error
+    if (control.hasError('minlength')) {
+      const error = control.getError('minlength');
+      return `Minimum ${error.requiredLength} characters required`;
+    }
+
+    // Checked for maximum length validation error
+    if (control.hasError('maxlength')) {
+      const error = control.getError('maxlength');
+      return `Maximum ${error.requiredLength} characters allowed`;
+    }
+
+    // Checked for pattern validation error
+    if (control.hasError('pattern')) {
+      return 'Invalid format';
+    }
+
+    // Checked for minimum value validation error
+    if (control.hasError('min')) {
+      const error = control.getError('min');
+      return `Minimum value is ${error.min}`;
+    }
+
+    // Checked for maximum value validation error
+    if (control.hasError('max')) {
+      const error = control.getError('max');
+      return `Maximum value is ${error.max}`;
+    }
+
+    // Returned a generic error message for any unhandled validation errors
+    return 'This field has validation errors';
+  }
 
   // To handle file input changes
   onFileChange(event: Event, fieldId: string): void {

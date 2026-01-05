@@ -148,7 +148,7 @@
 
                 @if (field.type !== 'checkbox' && isInvalid(field.id)) {
                 <div class="error-message">
-                    This field is required
+                    {{ getErrorMessage(field.id) }}
                 </div>
                 }
                 @if (field.type === 'checkbox' && isInvalid(field.id)) {
