@@ -97,7 +97,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/Form-Builder-Studio/",
+            "repo": "https://github.com/Dev-Rik/Form-Builder-Studio.git",
+            "branch": "gh-pages"
+          }
         }
       }
     }
